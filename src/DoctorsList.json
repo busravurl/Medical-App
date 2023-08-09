@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Dr. William Gardner",
+        "department": "Cardiolog"
+    },
+    {
+        "id": 2,
+        "name": "Dr. Ann Great",
+        "department": "Pediatrist"
+    },
+    {
+        "id": 3,
+        "name": "Dr. John Watson",
+        "department": "Neurolog"
+    },
+    {
+        "id": 4,
+        "name": "Dr. Julia Roberts",
+        "department": "Cardiolog"
+    }
+]

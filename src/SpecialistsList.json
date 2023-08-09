@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Dr. Sarah Jefferson",
+        "speciality": "Opthalmology",
+        "ExpertiseAreas": "Cataract Treatment \n Laser Eye Surgery",
+        "PractiseYears": "20 Years",
+        "WorkingTime": "Mon-Thu  08:00-20:00 \n Friday 07:00-22:00 \n Saturday 08:00-18:00"
+
+    },
+    {
+        "id": 2,
+        "name": "Dr. Sarah Jefferson",
+        "speciality": "Opthalmology",
+        "ExpertiseAreas": "Cataract Treatment \n Laser Eye Surgery",
+        "PractiseYears": "20 Years",
+        "WorkingTime": "Mon-Thu  08:00-20:00 \n Friday 07:00-22:00 \n Saturday 08:00-18:00"
+
+    },
+    {
+        "id": 3,
+        "name": "Dr. Sarah Jefferson",
+        "speciality": "Opthalmology",
+        "ExpertiseAreas": "Cataract Treatment \n Laser Eye Surgery",
+        "PractiseYears": "20 Years",
+        "WorkingTime": "Mon-Thu  08:00-20:00 \n Friday 07:00-22:00 \n Saturday 08:00-18:00"
+
+    },
+    {
+        "id": 4,
+        "name": "Dr. Sarah Jefferson",
+        "speciality": "Opthalmology",
+        "ExpertiseAreas": "Cataract Treatment \n Laser Eye Surgery",
+        "PractiseYears": "20 Years",
+        "WorkingTime": "Mon-Thu  08:00-20:00 \n Friday 07:00-22:00 \n Saturday 08:00-18:00"
+
+    }
+]

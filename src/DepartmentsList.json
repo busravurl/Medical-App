@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "Diagnostics",
+        "image": "diagnostics"
+    },
+    {
+        "id": 2,
+        "name": "Cardiology",
+        "image": "cardiology"
+    },
+    {
+        "id": 3,
+        "name": "Dental",
+        "image": "dental"
+    },
+    {
+        "id": 4,
+        "name": "Ophtalmology",
+        "image": "ophtalmology"
+    },
+    {
+        "id": 5,
+        "name": "Pulmonary",
+        "image": "pulmonary"
+    },
+    {
+        "id": 6,
+        "name": "Urology",
+        "image": "urology"
+    },
+    {
+        "id": 7,
+        "name": "Gastroenterology",
+        "image": "gastroenterology"
+    },
+    {
+        "id": 8,
+        "name": "Laboratory",
+        "image": "laboratory"
+    }
+]

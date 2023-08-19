@@ -1,20 +1,90 @@
-import {SafeAreaView, View, Text ,Image, FlatList, TouchableOpacity, ScrollView, RefreshControl, ImageBackground} from 'react-native'
+import {SafeAreaView, View, Text ,Image, TouchableOpacity, ScrollView, ImageBackground} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Header from '../../components/header';
-import WhoWeAre from '../../components/whoWeAre';
 import { wp } from '../../utils/screenResize';
-import DoctorsCard from '../../components/doctorsCard';
+import MapView, { Marker } from 'react-native-maps';
+import axios from 'axios';
+import MakeAppointmentModal from '../../modals/makeAppointmentModal';
+
 
 
 const AboutUs = () => {
+  useEffect(() => {
+    getSettings()
+  }, [])
+
+
+  const [settings, setSettings] = useState([]);
+  const [inputModalVisible, setInputModalVisible] = useState(false);
+
+  const handleInputToggle =() =>{
+      setInputModalVisible(!inputModalVisible);
+  }
+
+  const getSettings = async () => {
+  const apiUrl = 'https://almaestro.org/api/settings'; 
+  try {
+    const response = await axios.post(apiUrl);
+    setSettings(response.data.data);
+    console.log('settings',settings)
+  } catch (error) {
+    console.log(error);
+  }
+  };
 
   return (
 
     <SafeAreaView style={{flex: 1, backgroundColor: '#ffffff'}}>
       <Header />
-      <ScrollView style={{flex:1, margin:wp(2)}}>
-          <View style={{flexDirection: 'row', marginTop:wp(5),height: wp(90)}}>
+      <ScrollView style={{flex:1}}>
+      <View>
+      <MapView
+            region={{
+              latitude: 32.715736,
+              longitude: -117.161087,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+            style={{height: wp(90), width: '100%', borderRadius: 20}}>
+                <Marker
+                    draggable={false}
+                    coordinate={{
+                    latitude: 32.715736,
+                    longitude: -117.161087,
+                    }}
+                    pinColor={'#ff559d'}
+                />
+        </MapView>
+      </View>
+
+        <View style={{backgroundColor:'#1f3d9d', width: wp(43), paddingBottom: wp(4),paddingLeft: wp(5),borderRadius: wp(2),  top: wp(-40), marginLeft: wp(2)}}>
+          <Image 
+              source={require('../../assets/target.png')} 
+              style={{ width: wp(7), resizeMode:'contain'}}/>
+
+          <Text style={{color:'#fff', fontSize: wp(3), fontWeight: 'bold'}}>{settings.phone}</Text>  
+          <Text style={{color:'#fff', fontSize: wp(3), fontWeight: 'bold', marginTop: wp(2)}}>{settings.hour}</Text> 
+          <Text style={{color:'#fff', fontSize: wp(2.8), marginTop: wp(3)}}>{settings.address}  {settings.city}</Text> 
+          <Text style={{color:'#fff', fontSize: wp(2.8), marginTop: wp(3)}}>{settings.email}</Text>
+
+          <TouchableOpacity onPress={handleInputToggle} style={{ backgroundColor: '#f22283' ,width: wp(33), height: wp(10),marginTop: wp(3), borderRadius: wp(2), justifyContent: 'center', alignItems: 'center'}}>
+              <Text style={{color: '#ffffff',fontSize: wp(3), fontWeight: 'bold',padding: wp(1)}}>GET APPOINTMENT</Text>
+          </TouchableOpacity>
+          
+          <MakeAppointmentModal 
+            visible={inputModalVisible}
+            onClose={handleInputToggle}
+            onSend={() => Alert.alert('Send!')}
+          />
+        </View>
+                  
+        <View style={{ top: wp(-30), margin: wp(2)}}>
+        <View style={{flex:1, flexDirection:'row', justifyContent: 'center', marginTop: wp(7),marginBottom: wp(3)}}>
+              <Text style={{color: '#f22283',fontSize: wp(6), fontWeight: 'bold',}}>ABOUT</Text>
+              <Text style={{color: '#1f3d9d',fontSize: wp(6), fontWeight: 'bold',}}> US</Text>
+            </View>
+          <View style={{flexDirection: 'row',height: wp(90)}}>
                 <View style={{ padding: wp(2)}}>
                     <ImageBackground source={require('../../assets/about-img.jpg')} resizeMode="cover" style={{ height: '100%',borderRadius: wp(20)}}>
                         
@@ -79,12 +149,8 @@ const AboutUs = () => {
             </View>
         </View>
         
-        <View style={{flex:1, flexDirection:'row', justifyContent: 'center', marginTop: wp(7)}}>
-              <Text style={{color: '#f22283',fontSize: wp(6), fontWeight: 'bold',}}>OUR</Text>
-              <Text style={{color: '#1f3d9d',fontSize: wp(6), fontWeight: 'bold',}}> DOCTORS</Text>
-            </View>
-            <Text style={{color: '#b2b2b2',fontSize: wp(5),alignSelf: 'center'}}>Meet our team</Text>
-            <DoctorsCard />
+       
+        </View>
         
         </ScrollView>
     </SafeAreaView>

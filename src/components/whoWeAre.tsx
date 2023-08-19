@@ -1,10 +1,14 @@
 import React from "react";
 import { Image, ImageBackground, View, Text, TouchableOpacity } from "react-native";
 import { wp } from "../utils/screenResize";
+import { useNavigation } from "@react-navigation/native";
 
 
 
 const WhoWeAre = () => {
+
+    const navigation = useNavigation();
+
     return (
         <View style={{flexDirection: 'row', marginTop:wp(5)}}>
             <View style={{width: wp(40) ,height: wp(100), margin: wp(2)}}>
@@ -30,7 +34,7 @@ const WhoWeAre = () => {
                     conducting and analyzing of several lab tests on-site at no cost for
                     prioritized patients or at 70% for people with an insurance.</Text>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {navigation.navigate('About Us')}}>
                 <Text style={{color: '#1f3d9d',fontSize: wp(3), fontWeight: 'bold', fontFamily: 'Roboto', paddingTop: wp(2)}}>R E A D  M O R E</Text>
                 </TouchableOpacity>
 

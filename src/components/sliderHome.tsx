@@ -1,9 +1,16 @@
-import React from 'react';
-import {ImageBackground, Text, TouchableOpacity, View} from 'react-native'
+import React, { useState } from 'react';
+import {Alert, ImageBackground, Text, TouchableOpacity, View} from 'react-native'
 import { wp } from '../utils/screenResize';
+import MakeAppointmentModal from '../modals/makeAppointmentModal';
 
 
 const SliderHome = () => {
+    const [inputModalVisible, setInputModalVisible] = useState(false);
+
+    const handleInputToggle =() =>{
+        setInputModalVisible(!inputModalVisible);
+    }
+  
     return(
        <ImageBackground
           source={require('../assets/department.jpg')}
@@ -21,7 +28,9 @@ const SliderHome = () => {
             </View>
             <Text style={{color: '#ffffff',fontSize: wp(4), margin:wp(3)}}>30% discount on full examination</Text>
 
-            <TouchableOpacity style={{ 
+            <TouchableOpacity 
+            onPress={handleInputToggle}
+            style={{ 
                     backgroundColor: '#f22283' ,width: wp(43), height: wp(13),margin: wp(3), borderRadius: wp(1), justifyContent: 'center', alignItems: 'center',
                     shadowColor: "#f22283",
                     shadowOffset: {
@@ -33,7 +42,12 @@ const SliderHome = () => {
                     elevation: 6 }}>
                     <Text style={{color: '#ffffff',fontSize: wp(3), fontWeight: 'bold',padding: wp(1)}}>BOOK A CONSULTATION</Text>
                 </TouchableOpacity>
-            </View>
+                <MakeAppointmentModal 
+                      visible={inputModalVisible}
+                      onClose={handleInputToggle}
+                      onSend={() => Alert.alert('Send!')}
+                    />
+                </View>
        </ImageBackground>
 
     )

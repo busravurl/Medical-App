@@ -17,10 +17,10 @@ const Departments = () => {
         <View style={{width: '70%'}}>
         <Text style={{fontSize: wp(11),fontWeight: 'bold', color:'#d8d8d8'}}>{item.name}</Text>
         <Text style={{fontWeight: 'bold',fontSize: wp(7),marginTop: wp(-5), color:'#1f3d9d', marginLeft: wp(5)}}>{item.name}</Text>
-        <Text style={{marginLeft: wp(5)}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+        <Text style={{color: '#7b7b7b',marginLeft: wp(5), paddingBottom: wp(3)}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
         <Text style={{fontWeight: 'bold', color:'#1f3d9d', margin: wp(5)}}>R E A D  M O R E</Text>
         </View>
-
+        
         </TouchableOpacity>
       </View>
     )

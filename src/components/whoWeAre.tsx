@@ -12,7 +12,7 @@ const WhoWeAre = () => {
     return (
         <View style={{flexDirection: 'row', marginTop:wp(5)}}>
             <View style={{width: wp(40) ,height: wp(100), margin: wp(2)}}>
-                <ImageBackground source={require('../assets/about-img.jpg')} resizeMode="cover" style={{width: '100%' ,height: '100%',borderRadius: wp(20)}}>
+                <ImageBackground source={require('../assets/icon.png')} resizeMode="center" style={{width: '100%' ,height: '100%',borderRadius: wp(2), backgroundColor: '#f4f4f4'}}>
                     <View style={{backgroundColor:'#1f3d9d', width: wp(40) , height: wp(40),paddingLeft: wp(5),borderRadius: wp(2), transform: [{translateX: -25}], top: wp(56), marginLeft: wp(3)}}>
                     <Image 
                         source={require('../assets/target.png')} 

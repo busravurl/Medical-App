@@ -1,79 +1,60 @@
-import React, { useEffect, useState } from "react";
-import {View, FlatList, Text, TouchableOpacity, Alert} from 'react-native';
+import React from "react";
+import {View, FlatList, Text, TouchableOpacity, Image} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons'
+import specialistsList from "../SpecialistsList.json"
 import { wp } from '../utils/screenResize';
-import axios from "axios";
-import MakeAppointmentModal from "../modals/makeAppointmentModal";
+import { useNavigation } from "@react-navigation/native";
 
 const SpecialistsCard = () => {
-
-    useEffect(() => {
-        getSpecialist()
-      }, [])
-
-
-    const [specialist, setspecialist] = useState([]);
-
-    const getSpecialist = async () => {
-    const apiUrl = 'https://almaestro.org/api/doctors'; 
-    try {
-      const response = await axios.post(apiUrl);
-      setspecialist(response.data.data.doctors);
-      console.log('specialist',specialist)
-    } catch (error) {
-      console.log(error);
-    }
-    };
-
-
-    const [inputModalVisible, setInputModalVisible] = useState(false);
-
-    const handleInputToggle =() =>{
-        setInputModalVisible(!inputModalVisible);
-    }
   
+  const navigation = useNavigation();
 
     const _renderSpecialists = (item) => {
         return (
           <View style={{margin: wp(3)}}>
-            <View key={item.id} style={{backgroundColor: '#f9f9f9',height: '100%',alignItems: 'center', borderColor: '#1f3d9d', borderRadius: wp(3)}}>
+            <View key={item.id} style={{backgroundColor: '#f9f9f9',width: '90%',height: '100%',alignItems: 'center', borderColor: '#1f3d9d', borderRadius: wp(3)}}>
 
             <View style={{flexDirection: 'row'}}>
+                <Image style={{width: '30%',height: '100%', resizeMode: 'center', backgroundColor: '#f2f2f2'}} source={require('../assets/icon.png')} />
                 <View style={{ margin: wp(4)}}>
                   <Text style={{fontWeight: 'bold', color:'#333333', marginBottom: wp(1) ,fontSize: wp(6),margin:wp(1)}}>{item.name}</Text>
                   <View style={{flexDirection: 'row', margin: wp(1)}}>
                     <Text style={{fontWeight: 'bold'}}>Speciality: </Text>
-                    <Text>{item.Specialization}</Text>
+                    <Text>{item.speciality}</Text>
                   </View>
                   <View style={{flexDirection: 'row', margin: wp(1)}}>
                     <Text style={{fontWeight: 'bold'}}>Areas of Expertise: </Text>
-                    <Text>Cardiovascular Surgery</Text>
+                    <Text>{item.ExpertiseAreas}</Text>
                   </View>
                   <View style={{flexDirection: 'row', margin: wp(1)}}>
                     <Text style={{fontWeight: 'bold'}}>Years of Practise: </Text>
-                    <Text>20 Years</Text>
+                    <Text>{item.PractiseYears}</Text>
                   </View>
                   <View style={{flexDirection: 'row', margin: wp(1)}}>
                     <Text style={{fontWeight: 'bold'}}>Working Time: </Text>
-                    <Text>09:00am - 04:00pm</Text>
+                    <Text>{item.ExpertiseAreas}</Text>
                   </View>
-                  <View style={{flexDirection: 'row', margin: wp(1)}}>
+                  <View style={{flexDirection: 'row', margin: wp(1),marginBottom: wp(3)}}>
                     <Text style={{fontWeight: 'bold'}}>Contacts: </Text>
                     <View>
-                    <Text>+90 537 740 43 65</Text>
+                    <Text>+1 123 456 44 66</Text>
+                    {/* <View style={{flexDirection: 'row', margin: wp(1)}}>
+                    <Icon name={"logo-facebook"} size={wp(5)} color={'#333333'} />
+                    <Icon name={"logo-twitter"} size={wp(5)} color={'#333333'} />
+                    <Icon name={"logo-instagram"} size={wp(5)} color={'#333333'} /></View> */}
                     </View>
                   </View>
 
                   <TouchableOpacity 
-                  onPress={handleInputToggle}
+                  onPress={() => {navigation.navigate('Appointment')}}
                   style={{
-                        width: wp(37),
+                        width: wp(40),
                         height: wp(10),
-                        marginTop: wp(3),
                         flexDirection: 'row',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        backgroundColor: '#f22283',
-                        borderRadius: wp(1),
+                        backgroundColor: '#1f3d9d',
+                        borderRadius: wp(2),
                         shadowColor: "#b2b2b2",
                         shadowOffset: {
                         width: 0,
@@ -82,34 +63,34 @@ const SpecialistsCard = () => {
                         shadowOpacity: 0.22,
                         shadowRadius: 2.22,
                         elevation: 8 }}>
-                        <Text style={{color: "white", fontSize: wp(3), fontWeight: "bold", paddingBottom: wp(1)}}>BOOK A VISIT </Text>
+                        <Text style={{color: "white",fontWeight: "bold", paddingBottom: wp(1)}}>Booking a visit </Text>
+                        <Icon  name={"chevron-forward-outline"} size={wp(3.5)} color={'#ffffff'} />
                     </TouchableOpacity>
-                    <MakeAppointmentModal 
-                      visible={inputModalVisible}
-                      onClose={handleInputToggle}
-                      onSend={() => Alert.alert('Send!')}
-                    />
                 </View>
 
-            </View> 
-            
+            </View>
+
+
+
             </View>
           </View>
         )
       }
 
 
+
+
     return(
         <View style={{flex:1}}>
-            
+
               <FlatList
                 horizontal
-                data={specialist}
+                data={specialistsList}
                 renderItem={({item}) => _renderSpecialists(item)}
                 keyExtractor={(item) => item.id.toString()}
               />
 
-            
+
             </View>
     )
 }

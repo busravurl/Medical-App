@@ -6,10 +6,18 @@ import { wp } from '../../utils/screenResize';
 import MapView, { Marker } from 'react-native-maps';
 import axios from 'axios';
 import MakeAppointmentModal from '../../modals/makeAppointmentModal';
+import PlayVideo from '../../modals/playVideo';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 const AboutUs = () => {
+
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   useEffect(() => {
     getSettings()
   }, [])
@@ -68,15 +76,17 @@ const AboutUs = () => {
           <Text style={{color:'#fff', fontSize: wp(2.8), marginTop: wp(3)}}>{settings.address}  {settings.city}</Text> 
           <Text style={{color:'#fff', fontSize: wp(2.8), marginTop: wp(3)}}>{settings.email}</Text>
 
-          <TouchableOpacity onPress={handleInputToggle} style={{ backgroundColor: '#f22283' ,width: wp(33), height: wp(10),marginTop: wp(3), borderRadius: wp(2), justifyContent: 'center', alignItems: 'center'}}>
+          <TouchableOpacity  
+          onPress={() => {navigation.navigate('Appointment')}}
+          style={{ backgroundColor: '#f22283' ,width: wp(33), height: wp(10),marginTop: wp(3), borderRadius: wp(2), justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{color: '#ffffff',fontSize: wp(3), fontWeight: 'bold',padding: wp(1)}}>GET APPOINTMENT</Text>
           </TouchableOpacity>
           
-          <MakeAppointmentModal 
+          {/* <MakeAppointmentModal 
             visible={inputModalVisible}
             onClose={handleInputToggle}
             onSend={() => Alert.alert('Send!')}
-          />
+          /> */}
         </View>
                   
         <View style={{ top: wp(-30), margin: wp(2)}}>
@@ -86,13 +96,17 @@ const AboutUs = () => {
             </View>
           <View style={{flexDirection: 'row',height: wp(90)}}>
                 <View style={{ padding: wp(2)}}>
-                    <ImageBackground source={require('../../assets/about-img.jpg')} resizeMode="cover" style={{ height: '100%',borderRadius: wp(20)}}>
+                    <ImageBackground source={require('../../assets/icon.png')} resizeMode="center" style={{ height: '100%',borderRadius: wp(2), backgroundColor: '#f4f4f4'}}>
                         
-                          <TouchableOpacity style={{backgroundColor: '#f22283',width: wp(40), height: wp(15),padding: wp(2),borderRadius: wp(10), transform: [{translateX: -20}], top: wp(60), marginLeft: wp(3), justifyContent: 'center'}}>
+                          <TouchableOpacity onPress={handleInputToggle} style={{backgroundColor: '#f22283',width: wp(40), height: wp(15),padding: wp(2),borderRadius: wp(10), transform: [{translateX: -20}], top: wp(60), marginLeft: wp(3), justifyContent: 'center'}}>
                             <View style={{flexDirection: 'row',justifyContent: 'space-between'}}>
                             <View style={{width:wp(12), height: wp(12), borderRadius: wp(50), backgroundColor: '#ffffff',alignItems: 'center', justifyContent: 'center'}}>
                             <Icon  name={"play"} size={wp(7)} color={'#f22283'} /></View> 
                             <Text style={{color: '#ffffff',fontSize: wp(3.5), fontWeight: 'bold', alignSelf: 'center' }}>Watch Video</Text>
+                            <PlayVideo 
+                              visible={inputModalVisible}
+                              onClose={handleInputToggle}
+                            />
                             </View>
                           </TouchableOpacity>
                         
@@ -118,8 +132,8 @@ const AboutUs = () => {
       
         </View>
         
-        <View style={{flexDirection:'row', marginTop: wp(5),paddingLeft:wp(3)}}>
-          <Image source={require('../../assets/medical-center-2.jpg')} style={{ width: wp(45),height: wp(45),resizeMode:'cover',flexShrink:1}}/>
+        <View style={{flexDirection:'row', marginTop: wp(5),borderRadius: wp(2),paddingLeft:wp(3)}}>
+          <Image source={require('../../assets/icon.png')} style={{ width: wp(45),height: wp(45),resizeMode:'center',flexShrink:1, backgroundColor: '#f4f4f4'}}/>
           <View style={{flexShrink: 2, marginLeft: wp(2)}}>
               <Text style={{color: '#f22283',fontSize: wp(5), fontWeight: 'bold'}}>WE ARE THE BEST</Text>
               <Text style={{color: '#1f3d9d',fontSize: wp(5), fontWeight: 'bold', paddingBottom: wp(1)}}>MEDICAL CENTER</Text>

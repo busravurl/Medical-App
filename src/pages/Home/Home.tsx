@@ -1,5 +1,5 @@
-import {SafeAreaView, View, Text , ScrollView} from 'react-native'
-import React from 'react'
+import {SafeAreaView, View, Text , ScrollView, TouchableOpacity} from 'react-native'
+import React, { useEffect, useState } from 'react'
 
 import Header from '../../components/header'
 import SliderHome from '../../components/sliderHome';
@@ -8,9 +8,19 @@ import DepartmentsCard from '../../components/departmentsCard';
 import DoctorsCard from '../../components/doctorsCard';
 import WhoWeAre from '../../components/whoWeAre';
 import SpecialistsCard from '../../components/specialistsCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { loginSuccess, logout } from '../../redux/userInformation/actions';
 
 
 const Home = () => {
+
+  const dispatch = useDispatch();
+ const user = useSelector((state: RootState) => state.userInformationReducer.user);
+
+ 
+
+
 
   return (
 
@@ -18,12 +28,14 @@ const Home = () => {
       <Header />
       <ScrollView style={{flex:1}}>
         <SliderHome />
+            
         <View style={{alignItems: 'center'}}>
 
               
             <View style={{ flexDirection:'row', justifyContent: 'center', marginTop: wp(7)}}>
                 <Text style={{color: '#f22283',fontSize: wp(6), fontWeight: 'bold',}}>OUR</Text>
                 <Text style={{color: '#1f3d9d',fontSize: wp(6), fontWeight: 'bold',}}> DEPARTMENTS</Text>
+                
             </View>
             <DepartmentsCard />
 

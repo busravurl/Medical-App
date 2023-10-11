@@ -7,6 +7,7 @@ import Home from '../pages/Home/Home';
 import Departments from '../pages/Departments/Departments';
 import Doctors from '../pages/Doctors/Doctors';
 import AboutUs from '../pages/AboutUs/AboutUs';
+import Appointment from '../pages/Appointment/Appointment';
 
 
 
@@ -39,6 +40,8 @@ const MainStack: React.FC = () => {
           iconName = 'users' ;
         }else if (rn === "About Us") {
           iconName = 'target' ;
+        }else if (rn === "Appointment") {
+          iconName = 'book' ;
         }
 
         return <Icon name={iconName} size={17} color={color}/>
@@ -52,6 +55,7 @@ const MainStack: React.FC = () => {
         <Tab.Screen name="Departments" component={Departments} />
         <Tab.Screen name="Doctors" component={Doctors} />
         <Tab.Screen name="About Us" component={AboutUs} />
+        <Tab.Screen name="Appointment" component={Appointment} />
 
         
       </Tab.Navigator>

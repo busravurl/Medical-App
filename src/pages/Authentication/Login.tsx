@@ -1,37 +1,18 @@
-import { View, TextInput, Text, TouchableOpacity, SafeAreaView, StyleSheet, ImageBackground, Alert, Image } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, TextInput, Text, TouchableOpacity, SafeAreaView, StyleSheet, ImageBackground, Alert } from 'react-native'
+import React, { useState } from 'react'
 import { wp } from '../../utils/screenResize'
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import {LOGIN_SUCCESS, SET_USER_DATA, SET_USER_TOKEN } from '../../redux/actionTypes';
+import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../redux/userInformation/actions';
-import { RootState } from '../../redux/store';
 
 const Login = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const [refreshing, setRefreshing] = useState(false);
-
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const isLoggedIn = useSelector((state: RootState) => state.userInformationReducer.isLoggedIn);
-  const user = useSelector((state: RootState) => state.userInformationReducer.user);
-
-
-  // useEffect(() => {
-  //   setRefreshing(true)
-  //   if (isLoggedIn) {
-  //     // user verisi API'den veya başka bir yerden alınabilir
-      
-  //     dispatch(loginSuccess(user));
-  //     navigation.navigate('MainStack', {screen: 'Home' });
-  //     console.log('user',user.user)
-  //   }
-  //   setRefreshing(false)
-  // }, [isLoggedIn, dispatch]);
 
   
   const handleLogin = async () => {
@@ -47,7 +28,7 @@ const Login = () => {
       dispatch(loginSuccess(data.data));
       if (data.error === 0) {
         //console.log('token',data.data);
-        navigation.navigate('MainStack', {screen: 'Home' });
+        navigation.navigate('MainStack', {screen: 'Appointment' });
       } else {
         const errorMessage = data.message;
         Alert.alert('Error', errorMessage);
@@ -64,20 +45,17 @@ const Login = () => {
     <SafeAreaView style={{flex:1, backgroundColor: '#fff'}}>
         
         <ImageBackground 
-              source={require('../../assets/footer.png')}
-              resizeMode= 'cover' 
-              style={{flex: 1,height: '100%', justifyContent: 'center'}}>
-                  <View  style={{marginBottom:wp(20), justifyContent: 'center' ,alignItems: 'center'}}>
-                      {/* <Image style={{width: wp(20),height: wp(20), resizeMode: 'center',marginLeft: wp(2)}}  source={require('../../assets/footer-logo.png')}/> */}
-                      <Text style={{color: '#1f3d9d',fontWeight: 'bold',padding: wp(5),fontSize: wp(6)}}>LOGIN</Text>
-                  </View>
+          source={require('../../assets/footer.png')}
+          resizeMode= 'cover' 
+          style={{flex: 1,height: '100%', justifyContent: 'center'}}>
+              <View  style={{marginBottom:wp(20), justifyContent: 'center' ,alignItems: 'center'}}>
+                  <Text style={{color: '#1f3d9d',fontWeight: 'bold',padding: wp(5),fontSize: wp(6)}}>LOGIN</Text>
+              </View>
                  
-               
-       
         <View style={{ alignItems: 'center'}}>
           <View style={styles.card}>
               <TextInput 
-              style={{color:'#cecece', paddingLeft: wp(2)}}
+              style={{color:'#cecece', paddingLeft: wp(2), width: '100%'}}
               placeholder="E mail"
               value={email}
               onChangeText={setEmail}
@@ -86,7 +64,7 @@ const Login = () => {
           </View>
           <View style={styles.card}>
               <TextInput 
-              style={{color:'#cecece', paddingLeft: wp(2)}}
+              style={{color:'#cecece', paddingLeft: wp(2), width: '100%'}}
               placeholder="Password"
               secureTextEntry
               value={password}
@@ -102,19 +80,16 @@ const Login = () => {
             alignItems: 'center',
             justifyContent: 'center'}}>
             <TouchableOpacity 
-
-              onPress={handleLogin}
-              ><Text style={{color:"#fff", fontWeight:'700', fontSize: wp(5)}}>Login</Text></TouchableOpacity>
-            
-         
-        </View>
-        <View style={{flexDirection: 'row',margin: wp(3)}}>
-          <Text style={{color:"#cecece"}}>Don't you have an account? </Text>
-          <TouchableOpacity onPress={() => {navigation.navigate('RegisterPage')}}><Text style={{color:"#4d69a6"}} > Go Register</Text></TouchableOpacity>
-        </View></View>
+              onPress={handleLogin}>
+              <Text style={{color:"#fff", fontWeight:'700', fontSize: wp(5)}}>Login</Text></TouchableOpacity> 
+          </View>
+          <View style={{flexDirection: 'row',margin: wp(3)}}>
+            <Text style={{color:"#cecece"}}>Don't you have an account? </Text>
+            <TouchableOpacity onPress={() => {navigation.navigate('RegisterPage')}}><Text style={{color:"#4d69a6"}} > Go Register</Text></TouchableOpacity>
+          </View></View>
            </ImageBackground>
             
-            </SafeAreaView> 
+    </SafeAreaView> 
   )
 }
 

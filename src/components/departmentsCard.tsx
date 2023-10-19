@@ -30,7 +30,7 @@ try {
 
     const _renderDepartments = (item) => {
 
-      const fullImageUrl = "https://almaestro.org/" + item.image;
+      const fullImageUrl = "https://almaestro.org/" + item.icon;
       //console.log(fullImageUrl);
   
   

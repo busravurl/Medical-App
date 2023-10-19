@@ -16,7 +16,7 @@ const RootStack = () =>{
     return(
        <NavigationContainer>
             <Stack.Navigator
-             initialRouteName="LoginPage"
+             initialRouteName="MainStack"
              screenOptions={{headerShown:false}} > 
             <Stack.Screen name="MainStack" component={MainStack}/>
             <Stack.Screen name="LoginPage" component={Login} />

@@ -50,7 +50,7 @@ const Register = () => {
         <View style={{ alignItems: 'center'}}>
         <View style={styles.card}>
             <TextInput 
-            style={{color:'#c7c7c7', paddingLeft: wp(2)}}
+            style={{color:'#c7c7c7', paddingLeft: wp(2), width: '100%'}}
             onChangeText={setName}
             placeholder="name"
             placeholderTextColor={'#cecece'}
@@ -59,7 +59,7 @@ const Register = () => {
         </View>
         <View style={styles.card}>
             <TextInput 
-            style={{color:'#c7c7c7', paddingLeft: wp(2)}}
+            style={{color:'#c7c7c7', paddingLeft: wp(2), width: '100%'}}
             onChangeText={setPhone}
             placeholder="phone"
             placeholderTextColor={'#cecece'}
@@ -68,7 +68,7 @@ const Register = () => {
         </View>
         <View style={styles.card}>
             <TextInput 
-            style={{color:'#c7c7c7', paddingLeft: wp(2)}}
+            style={{color:'#c7c7c7', paddingLeft: wp(2), width: '100%'}}
             onChangeText={setEmail}
             placeholder="e-mail adress"
             placeholderTextColor={'#cecece'}
@@ -77,7 +77,7 @@ const Register = () => {
         </View>
         <View style={styles.card}>
             <TextInput 
-            style={{color:'#c7c7c7', paddingLeft: wp(2)}}
+            style={{color:'#c7c7c7', paddingLeft: wp(2), width: '100%'}}
             onChangeText={setPassword}
             placeholder="password"
             placeholderTextColor={'#cecece'}

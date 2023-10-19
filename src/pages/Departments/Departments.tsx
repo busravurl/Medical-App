@@ -29,7 +29,7 @@ const Departments = () => {
 
   const _renderDepartments = (item: any) => {
 
-    const fullImageUrl = "https://almaestro.org/" + item.image;
+    const fullImageUrl = "https://almaestro.org/" + item.icon;
       //console.log(fullImageUrl);
     return (
       <View >

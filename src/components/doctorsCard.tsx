@@ -33,7 +33,7 @@ const DoctorsCard = () => {
 
         return (
           <View style={{marginBottom: wp(5)}}>
-            <View key={item.id} style={{backgroundColor: '#f9f9f9',width: wp(55),alignItems: 'center',margin: wp(3), borderColor: '#1f3d9d', borderRadius: wp(1)}}>
+            <View key={item.id} style={{backgroundColor: '#f9f9f9',alignItems: 'center',margin: wp(3), borderColor: '#1f3d9d', borderRadius: wp(1)}}>
 
             <View>
                 <Image style={{width: wp(55),height: wp(60), resizeMode: 'contain',borderRadius: wp(1)}} source={{uri: fullImageUrl}} />

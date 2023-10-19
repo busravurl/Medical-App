@@ -41,10 +41,10 @@ const Doctors = () => {
 
     return (
       <View style={{marginBottom: wp(5), alignItems: 'center',marginTop: wp(5)}}>
-        <View key={item.id} style={{backgroundColor: '#fff',width: '80%',alignItems: 'center',margin: wp(3),borderWidth: wp(0.2), borderColor: '#b2b2b2', borderRadius: wp(2)}}>
+        <View key={item.id} style={{backgroundColor: '#fff',width: '80%',alignItems: 'center',margin: wp(3),borderWidth: wp(0.1), borderColor: '#b2b2b2', borderRadius: wp(2)}}>
 
         <View>
-            <Image style={{width: wp(80),height: wp(80), resizeMode: 'cover',}} source={{uri: fullImageUrl}} />
+            <Image style={{height: wp(80), resizeMode: 'contain',marginTop: wp(5)}} source={{uri: fullImageUrl}} />
             <View style={{ margin: wp(4), alignItems: 'flex-start'}}>
               <Text style={{fontWeight: 'bold', color:'#333333', marginBottom: wp(1),marginTop: wp(3) ,fontFamily: 'Roboto',fontSize: wp(5)}}>{item.name}</Text>
               <Text style={{color: '#7b7b7b',fontFamily: 'Roboto', marginBottom: wp(5)}}>{item.Specialization}</Text>
